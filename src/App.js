@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Timers from './Timers'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Pomodoro Clock</h1>
+      <Timers />
+      <Timers />
+      <div>
+        <h3 id="timer-label">Session</h3>
+        <h3 id="time-left">25:00</h3>
+        <button id="start_stop">
+        <i class="fas fa-play"></i>
+        {
+        //<i class="fas fa-pause"></i>
+        }
+        </button>
+        <button id="reset">
+          <i class="fas fa-sync"></i>
+        </button>
+      </div>
     </div>
   );
 }
