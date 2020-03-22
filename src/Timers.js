@@ -1,14 +1,14 @@
 import React from 'react'
 
-function Timers() {
+function Timers(props) {
     return(
         <div className="set--timers">
-            <h2 id="break-label">Break Length</h2>
-            <button id="break-increment">
+            <h2 id={`${props.title.toLowerCase()}-label`}>{props.title} Length</h2>
+            <button id={`${props.title.toLowerCase()}-increment`} onClick={props.handleIncrease}>
                 <i className="fas fa-chevron-up"></i>
             </button>
-            <p id="break-length">5</p>
-            <button id="break-decrement">
+            <span id={`${props.title.toLowerCase()}-length`}className="counter">{props.count}</span>
+            <button id={`${props.title.toLowerCase()}-decrement`} onClick={props.handleDecrease}>
                 <i className="fas fa-chevron-down"></i>
             </button>
         </div>

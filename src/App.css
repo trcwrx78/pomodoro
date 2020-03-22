@@ -1,3 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,700&display=swap');
+
+:root {
+  --ff-primary: 'Roboto', sans-serif;
+  --ff-secondary: 'Roboto Mono', monospace;
+
+  --fw-reg: 400;
+  --fw-bold: 700;
+
+  --clr-dark: #e74c3c;
+  --clr-light: #ecf0f1;
+  --clr-accent: #1abc9c;
+}
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  text-align: center;
+  font-family: var(--ff-primary);
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: var(--fw-bold);
+  margin-bottom: .25em;
+}
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+.flex-timer {
+  display: flex;
+  align-items: center;
+}
+
+.set--timers {
+  margin: 20px;
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: .5em;
+}
+
+h3 {
+  font-size: 4.5rem;
+  margin: .25em;
+}
+
+.set--countdown {
+
+  border: 4px solid var(--clr-light);
+  border-radius: 15px;
+  padding: 10px 0 20px 0;
+  width: 400px;
+}
+
+.counter {
+  font-family: var(--ff-secondary);
+}
+
+button {
+  background-color: transparent;
+  color: var(--clr-light);
+  border-radius: 15px;
+  border: 3px solid var(--clr-light);
+  padding: 20px;
+  margin: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+span {
+  font-size: 2.75rem;
+  font-weight: var(--fw-bold);
 }

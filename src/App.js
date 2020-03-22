@@ -1,24 +1,35 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Context} from './Context'
 import './App.css';
 import Timers from './Timers'
 
 function App() {
+  const {
+    breakContext, 
+    sessionContext, 
+    timer, 
+    currentTimer,
+    convertSeconds,
+    isPlaying,
+    handlePlay, 
+    handleReset
+  } = useContext(Context)
+
   return (
-    <div className="App">
-      <h1>Pomodoro Clock</h1>
-      <Timers />
-      <Timers />
-      <div>
-        <h3 id="timer-label">Session</h3>
-        <h3 id="time-left">25:00</h3>
-        <button id="start_stop">
-        <i class="fas fa-play"></i>
-        {
-        //<i class="fas fa-pause"></i>
-        }
+    <div className="grid-container">
+      <h1 className="set--h1">Pomodoro Clock</h1>
+      <div className="flex-timer">
+        <Timers {...breakContext}/>
+        <Timers {...sessionContext}/>
+      </div>
+      <div className="set--countdown">
+        <h2 id="timer-label">{currentTimer}</h2>
+        <h3 id="time-left" className="counter">{convertSeconds(timer)}</h3>
+        <button id="start_stop" onClick={handlePlay}>
+          <i className={`fas fa-${isPlaying ? "pause" : "play"}`}></i>
         </button>
-        <button id="reset">
-          <i class="fas fa-sync"></i>
+        <button id="reset" onClick={handleReset}>
+          <i className="fas fa-sync"></i>
         </button>
       </div>
     </div>
