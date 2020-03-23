@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useRef} from "react"
 
 const Context = React.createContext()
 
@@ -9,11 +9,11 @@ function ContextProvider({children}) {
     const [currentTimer, setCurrentTimer] = useState('Session')
     const [isPlaying, setIsPlaying] = useState(false)
     const audio = document.getElementById('beep')
-    let loop
+    const loop = useRef()
 
     useEffect(() => {
         if(isPlaying && timer > 0) {
-            loop = setInterval(() => {
+            loop.current = setInterval(() => {
                     setTimer(time => time - 1)
                     }, 1000)
         } else if(timer === 0) {
@@ -21,7 +21,7 @@ function ContextProvider({children}) {
             setTimer(currentTimer === 'Session' ? breakCount * 60 : sessionCount * 60 )
             audio.play()
         }
-        return () => clearInterval(loop)
+        return () => clearInterval(loop.current)
     }, [isPlaying, timer])
 
     const breakContext = {
@@ -67,7 +67,7 @@ function ContextProvider({children}) {
 
     function handlePlay() {
         setIsPlaying(prev => !prev)
-        clearInterval(loop)
+        clearInterval(loop.current)
     }
 
     function handleReset() {
@@ -77,7 +77,7 @@ function ContextProvider({children}) {
         setCurrentTimer('Session')
         setIsPlaying(false)
 
-        clearInterval(loop)
+        clearInterval(loop.current)
 
         audio.pause();
         audio.currentTime = 0;
