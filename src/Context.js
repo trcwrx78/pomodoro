@@ -8,17 +8,14 @@ function ContextProvider({children}) {
     const [timer, setTimer] = useState(25*60)
     const [currentTimer, setCurrentTimer] = useState('Session')
     const [isPlaying, setIsPlaying] = useState(false)
-    const [loop, setLoop] = useState(undefined)
-
     const audio = document.getElementById('beep')
+    let loop
 
     useEffect(() => {
         if(isPlaying && timer > 0) {
-            setLoop(
-                setInterval(() => {
+            loop = setInterval(() => {
                     setTimer(time => time - 1)
-                }, 1000)
-            )
+                    }, 1000)
         } else if(timer === 0) {
             setCurrentTimer(prev => prev === 'Session' ? 'Break' : 'Session')
             setTimer(currentTimer === 'Session' ? breakCount * 60 : sessionCount * 60 )
@@ -63,13 +60,14 @@ function ContextProvider({children}) {
                 setBreakCount(newCount)
             } else if (timerType === 'Session') {
                 setSessionCount(newCount)
+                setTimer(newCount * 60)
             }
-            setTimer(newCount * 60)
         }
     }
 
     function handlePlay() {
         setIsPlaying(prev => !prev)
+        clearInterval(loop)
     }
 
     function handleReset() {
